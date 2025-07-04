@@ -23,12 +23,14 @@ public class UserDao {
             PreparedStatement statement = conn.prepareStatement(CREATE_USER_QUERY, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, user.getUserName());
             statement.setString(2, user.getEmail());
-            statement.setString(3, hashPassword(user.getPassword()));
+            String hashPassword = hashPassword(user.getPassword());
+            statement.setString(3, hashPassword);
             statement.executeUpdate();
             ResultSet resultSet = statement.getGeneratedKeys();
             if (resultSet.next()) {
                 user.setId(resultSet.getInt(1));
             }
+            user.setPassword(hashPassword);
             return user;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -63,9 +65,11 @@ public class UserDao {
             PreparedStatement statement = conn.prepareStatement(UPDATE_USER_QUERY);
             statement.setString(1, user.getUserName());
             statement.setString(2, user.getEmail());
-            statement.setString(3, hashPassword(user.getPassword()));
+            String hashPassword = hashPassword(user.getPassword());
+            statement.setString(3, hashPassword);
             statement.setInt(4, user.getId());
             statement.executeUpdate();
+            user.setPassword(hashPassword);
         } catch (SQLException e) {
             e.printStackTrace();
         }
