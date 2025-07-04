@@ -1,12 +1,12 @@
 package pl.coderslab.entity;
 
 public class User {
-    private int id;
+    private long id;
     private String userName;
     private String email;
     private String password;
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
     public void setUserName(String userName) {
@@ -19,7 +19,7 @@ public class User {
         this.password = password;
     }
 
-    public int getId() {
+    public long getId() {
         return this.id;
     }
     public String getUserName() {
