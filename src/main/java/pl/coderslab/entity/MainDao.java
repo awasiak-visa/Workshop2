@@ -1,5 +1,7 @@
 package pl.coderslab.entity;
 
+import java.util.Arrays;
+
 public class MainDao {
     public static void main(String[] args) {
         UserDao userDao = new UserDao();
@@ -38,5 +40,13 @@ public class MainDao {
         // Test for method delete.
         userDao.delete(1);
 
+        // Test for method findAll.
+        User[] allUsers = userDao.findAll();
+        System.out.println(allUsers != null);
+        System.out.println(allUsers.length);
+        System.out.println("First user's id: " + allUsers[0].getId());
+        System.out.println("First user's userName: " + allUsers[0].getUserName());
+        System.out.println("First user's email: " + allUsers[0].getEmail());
+        System.out.println("First user's password: " + allUsers[0].getPassword());
     }
 }
