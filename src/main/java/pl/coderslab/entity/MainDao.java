@@ -4,7 +4,8 @@ public class MainDao {
     public static void main(String[] args) {
         UserDao userDao = new UserDao();
 
-        User user1 = new User();
+        // Tests for method create.
+        /*User user1 = new User();
         user1.setUserName("karol");
         user1.setEmail("karol@gmail.com");
         user1.setPassword("123456");
@@ -14,9 +15,9 @@ public class MainDao {
         user2.setUserName("hania");
         user2.setEmail("hanna@outlook.com");
         user2.setPassword("passwd");
-        userDao.create(user2);
+        userDao.create(user2);*/
 
-
+        // Tests for method read.
         User user3 = userDao.read(7);
         System.out.println(user3 != null);
         System.out.println("id: " + user3.getId());
@@ -26,5 +27,12 @@ public class MainDao {
 
         User user4 = userDao.read(5);
         System.out.println(user4 == null);
+
+        // Test for method update.
+        user3.setUserName("ala");
+        user3.setEmail("ala@gmail.com");
+        user3.setPassword("1234");
+        userDao.update(user3);
+        System.out.println("id: " + user3.getId());
     }
 }
